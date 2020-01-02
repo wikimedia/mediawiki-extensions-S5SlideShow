@@ -1,0 +1,26 @@
+{
+    "name": "S5SlideShow",
+    "version": "0.3",
+    "author": [
+        "Vitaliy Filippov",
+        "Wolfgang Fahl"
+    ],
+    "url": "https://www.mediawiki.org/wiki/Extension:S5SlideShow",
+    "descriptionmsg": "s5-desc",
+    "license-name": "GPL-2.0",
+    "type": "parserhook",
+    "requires": {
+        "MediaWiki": ">= 1.26.0"
+    },
+    "APIModules": {
+    },
+    "AutoloadClasses": {
+        "S5SlideShowHooks": "S5SlideShow.body.php"
+    },
+    "MessagesDirs": {
+        "S5SlideShow": [
+            "i18n"
+        ]
+    },
+    "manifest_version": 1
+}

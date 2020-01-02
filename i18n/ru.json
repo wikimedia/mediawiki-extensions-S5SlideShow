@@ -1,0 +1,9 @@
+{
+    "@metadata": {
+        "authors": [
+            "Vitaliy Filippov",
+            "Wolfgang Fahl"
+        ]
+    },
+    "s5-desc": "S5SlideShow - это расширение MediaWiki, позволяющее просто, быстро и удобно создавать слайд-шоу с использованием S5 в контексте страниц MediaWiki и Wiki."
+}

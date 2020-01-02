@@ -1,0 +1,9 @@
+{
+    "@metadata": {
+        "authors": [
+            "Vitaliy Filippov",
+            "Wolfgang Fahl"
+        ]
+    },
+    "s5-desc": "S5SlideShow est une extension MediaWiki permettant la création simple, rapide et pratique de diaporamas utilisant S5 dans le contexte des pages MediaWiki et Wiki."
+}
