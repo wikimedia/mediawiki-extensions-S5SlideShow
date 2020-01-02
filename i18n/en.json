@@ -5,5 +5,13 @@
             "Wolfgang Fahl"
         ]
     },
-    "s5-desc": "S5SlideShow ist eine MediaWiki-Erweiterung, die das einfache, schnelle und bequeme Erstellen von Diashows mit S5 im Kontext von MediaWiki- und Wiki-Seiten ermöglicht."
+    "s5SlideShow": "S5SlideShow",
+    "s5SlideShow-desc": "S5SlideShow is a MediaWiki extension allowing simple, fast and convenient creation of slide shows using S5 in the context of MediaWiki and Wiki pages. ",
+    "special-s5SlideShow-title": "S5SlideShow configuration",
+    "special-s5SlideShow-intro": "",
+    "s5slide-header-title" : "Title",
+    "s5slide-header-subtitle" : "Subtitle",
+    "s5slide-header-footer" : "Footer",
+    "s5slide-header-subfooter" : "Subfooter",
+    "s5slide-header-author" : "Author"
 }
