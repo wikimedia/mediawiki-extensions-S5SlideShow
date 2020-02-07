@@ -251,7 +251,12 @@ class Render {
 	 */
 	function loadContent( $content = null ) {
 		if ( $content === null ) {
-			$content = $this->pageContent->getText();
+			if ( method_exists( $this->pageContent, 'getText' ) ) {
+				$content = $this->pageContent->getText();
+			} else {
+				// Pre 1.33 compatibility
+				$content = $this->pageContent->getNativeData();
+			}
 		}
 		$this->getParser();
 		$p = new Parser;
