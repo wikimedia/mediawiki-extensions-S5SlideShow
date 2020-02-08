@@ -31,7 +31,8 @@ use ParserOptions;
 use PPFrame;
 use Title;
 use User;
-use Wikimedia\AtEase\AtEase;
+// more trouble than help
+// use Wikimedia\AtEase\AtEase;
 
 /**
  * @author Vitaliy Filippov <vitalif@mail.ru>
@@ -355,8 +356,11 @@ class Render {
 			$this->loadContent();
 		}
 
+		$currentDir=getcwd();
+		
 		// load template contents
-		$slide_template = AtEase::quietCall( 'file_get_contents', $egS5SlideTemplateFile );
+		// AtEase::quietCall( 'file_get_contents'
+		$slide_template = file_get_contents($egS5SlideTemplateFile );
 		if ( !$slide_template ) {
 			return false;
 		}
@@ -476,8 +480,8 @@ class Render {
 				$a = new MWArticle( $title );
 				$c = $a->getContent();
 			} else {
- 				$c = AtEase::quietCall(
-					'file_get_contents', "$dir/" . str_replace( '$skin', $skin, $file )
+			    // AtEase::quietCall('file_get_contents'
+ 				$c = file_getcontents("$dir/" . str_replace( '$skin', $skin, $file )
 				);
 			}
 			$c = preg_replace_callback(

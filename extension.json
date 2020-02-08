@@ -37,7 +37,7 @@
         ]
     },
     "SpecialPages": {
-        "S5SlideShow": "MediaWiki\\Extensions\\S5SlideShow\\SpecialS5SlideShow"
+        "S5SlideShow": "S5SlideShow\\SpecialS5SlideShow"
     },
     "MessagesDirs": {
         "S5SlideShow": [
