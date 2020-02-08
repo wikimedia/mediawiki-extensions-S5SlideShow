@@ -5,6 +5,7 @@
  * (http://meyerweb.com/eric/tools/s5/)
  *
  * Copyright (c) 2010+ Vitaliy Filippov <vitalif@mail.ru>
+ * Copyright (c) 2020  Wolfgang Fahl
  * Copyright (c) 2020  NicheWork, LLC
  *
  * This program is free software; you can redistribute it and/or modify
@@ -35,6 +36,7 @@ use Wikimedia\AtEase\AtEase;
 /**
  * @author Vitaliy Filippov <vitalif@mail.ru>
  * @author Mark A. Hershberger <mah@nichework.com>
+ * @author Wolfgang Fahl <wf@bitplan.com>
  * @package MediaWiki
  * @subpackage Extensions
  */
@@ -290,13 +292,13 @@ class Render {
 			$title = $this->sTitle;
 		}
 		$text = str_replace( "__TOC__", '', trim( $text ) );
-		$prev = Hooks::$parsingSlide;
-		Hooks::$parsingSlide = true;
+		$prev = S5SlideShowHooks::$parsingSlide;
+		S5SlideShowHooks::$parsingSlide = true;
 		$output = $this->getParser()->parse(
 			"$text __NOTOC__ __NOEDITSECTION__", $title,
 			$this->parserOptions, !$inline, false
 		);
-		Hooks::$parsingSlide = $prev;
+		S5SlideShowHooks::$parsingSlide = $prev;
 		$wgOut->addParserOutput( $output );
 		return $output->getText();
 	}
@@ -466,9 +468,9 @@ class Render {
 		$dir = __DIR__;
 		$css = '';
 		if ( $print ) {
-			Hooks::$styles['print'] = 'print.css';
+			S5SlideShowHooks::$styles['print'] = 'print.css';
 		}
-		foreach ( Hooks::$styles as $k => $file ) {
+		foreach ( S5SlideShowHooks::$styles as $k => $file ) {
 			$title = Title::newFromText( "S5/$skin/$k", NS_MEDIAWIKI );
 			if ( $title->exists() ) {
 				$a = new MWArticle( $title );
