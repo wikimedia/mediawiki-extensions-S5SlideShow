@@ -51,14 +51,15 @@
         "S5SlideShow\\S5SlideShowHooks": "src/S5SlideShowHooks.php",
         "S5SlideShow\\SpecialS5SlideShow": "src/Special.php",
         "S5SlideShow\\Action": "src/Action.php",
-        "S5SlideShow\\Render": "src/Render.php"
+        "S5SlideShow\\Render": "src/Render.php",
+        "S5SlideShow\\Skin": "src/Skin.php"
     },
     "config": {
 		"_prefix": "egS5",
 		"Scaled": false,
 		"DefaultStyle": "default",
 		"BrowserScaleHack": true,
-		"SlideTemplateFile": "slide.htm",
+		"SlideTemplateFile": "extensions/S5SlideShow/slide.htm",
 		"SlideCenterMark": "(center)",
 		"SlideHeadingMark": false,
 		"SlideIncMark": "(step)"

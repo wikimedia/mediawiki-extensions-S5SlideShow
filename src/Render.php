@@ -330,7 +330,9 @@ class Render {
 	function getHeadItems() {
 		// Extract loader scripts and styles from OutputPage::headElement()
 		global $wgOut;
-		$wgOut->getContext()->setSkin( $skin = new Skin() );
+		$skin = new Skin();
+		$context=$wgOut->getContext();
+		$context->setSkin( $skin );
 		$s = $wgOut->headElement( $skin );
 		preg_match_all(
 			'/<script[^<>]*>.*?<\/script>|<link[^<>]*rel="stylesheet"[^<>]*>|' .
@@ -344,7 +346,7 @@ class Render {
 								} )
 		);
 	}
-
+	
 	/**
 	 * Generate presentation HTML code
 	 */
@@ -357,6 +359,8 @@ class Render {
 		}
 
 		$currentDir=getcwd();
+		$debugMsg=": trying to load slide template from ".$egS5SlideTemplateFile." relative to ".$currentDir;
+		wfDebug(__CLASS__.$debugMsg);
 		
 		// load template contents
 		// AtEase::quietCall( 'file_get_contents'
