@@ -174,6 +174,8 @@ class Render {
 		$content = $p->preprocess( $content, $this->sTitle, $this->parserOptions );
 		$p->setOutputType( Parser::OT_WIKI );
 		$node = $p->preprocessToDom( $content );
+		// mediawiki 1.33
+		$node= $node->node;
 		$doc = $node->ownerDocument;
 		$all = $node->childNodes;
 		if ( $this->attr['headingmark'] ) {
