@@ -29,8 +29,16 @@ namespace S5SlideShow;
 use SkinApi;
 use SkinTemplate;
 
+/**
+ * see https://doc.wikimedia.org/mediawiki-core/master/php/classSkinApi.html
+ *
+ */
 class Skin extends SkinApi {
-	public function setupSkinUserCss( OutputPage $out ) {
+    /**
+     * set up the skin user css
+     * @param OutputPage $out
+     */
+	public function setupSkinUserCss(  $out ) {
 		SkinTemplate::setupSkinUserCss( $out );
 	}
 }
