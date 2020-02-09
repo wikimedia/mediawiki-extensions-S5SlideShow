@@ -193,9 +193,11 @@ class Render {
 				'/', '\\/', preg_quote( $this->attr['centermark'] )
 			) . '/';
 		}
-		for ( $i = 0; $i < $all->length; $i++ ) {
+		$allLen=$all->length;
+		wfDebug(__METHOD__.": checking ".$allLen." document nodes for slide transformation");
+		for ( $i = 0; $i < $allLen; $i++ ) {
 			$c = $all->item( $i );
-			if ( $c->nodeName == 'h' && ( $st = $this->check_slide_heading( $c ) ) !== null ) {
+			if ( isset($c->nodeName) && $c->nodeName == 'h' && ( $st = $this->check_slide_heading( $c ) ) !== null ) {
 				/**
 				 * Add
 				 * <ext><name>slides</name><attr>ATTRS</attr><inner>CONTENT</inner></ext>
