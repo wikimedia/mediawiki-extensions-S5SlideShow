@@ -11,7 +11,8 @@
     },
     "author": [
         "Vitaliy Filippov",
-        "Wolfgang Fahl"
+        "[http://www.bitplan.com/index.php/Wolfgang_Fahl Wolfgang Fahl/ProfiWiki]",
+        "[http://hexmode.com Mark A. Hershberger]"
     ],
     "Actions": {
 	"slide": "S5SlideShow\\Action"
