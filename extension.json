@@ -33,7 +33,7 @@
             "S5SlideShow\\S5SlideShowHooks::MagicWordwgVariableIDs"
         ],
         "ParserGetVariableValueSwitch": [
-            "S5SlideShow\\S5SlideShowHooks::ParserGetVariablValueSwitch"
+            "S5SlideShow\\S5SlideShowHooks::ParserGetVariableValueSwitch"
         ]
     },
     "SpecialPages": {
