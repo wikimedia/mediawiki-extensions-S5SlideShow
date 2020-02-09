@@ -470,6 +470,11 @@ class Render {
 		}
 		return "url(extensions/S5SlideShow/$skin/" . $m[1] . ')';
 	}
+	
+	// https://stackoverflow.com/a/834355/1497139
+	static function endsWith(string $haystack, string $needle): bool {
+	    return substr($haystack, -strlen($needle))===$needle;
+	}
 
 	/**
 	 * Generate CSS stylesheet for a given S5 skin
@@ -477,20 +482,27 @@ class Render {
 	 */
 	static function genStyle( $skin, $print = false ) {
 		global $wgOut;
+		// directory of script
 		$dir = __DIR__;
+		// since 2020-09 the sources are in src subdirectory
+		if (Render::endsWith($dir,"src")) {
+		    $dir=dirname($dir);
+		}
 		$css = '';
 		if ( $print ) {
 			S5SlideShowHooks::$styles['print'] = 'print.css';
 		}
 		foreach ( S5SlideShowHooks::$styles as $k => $file ) {
+		    // first try whether there is a page for the style
 			$title = Title::newFromText( "S5/$skin/$k", NS_MEDIAWIKI );
 			if ( $title->exists() ) {
 				$a = new MWArticle( $title );
 				$c = $a->getContent();
 			} else {
+			    // try getting page from file system
 			    // AtEase::quietCall('file_get_contents'
- 				$c = file_getcontents("$dir/" . str_replace( '$skin', $skin, $file )
-				);
+			    $skinFile="$dir/" . str_replace( '$skin', $skin, $file);
+ 				$c = file_get_contents($skinFile);
 			}
 			$c = preg_replace_callback(
 				'#url\(([^\)]*)\)#is', function( $m ) use ( $skin ) {
@@ -698,22 +710,5 @@ class Render {
 	// stub for tag hooks
 	static function empty_tag_hook() {
 		return '';
-	}
-
-	/**
-	 * Check whether $haystack begins or ends with $needle, and if yes,
-	 * remove $needle from it and return true.
-	 */
-	static function strCheck( &$haystack, $needle ) {
-		$needle = mb_strtolower( $needle );
-		$needleLen = mb_strlen( $needle );
-		if ( mb_strtolower( mb_substr( $haystack, 0, $needleLen ) ) === $needle ) {
-			$haystack = trim( mb_substr( $haystack, $needleLen ) );
-		} elseif ( mb_strtolower( mb_substr( $haystack, -$needleLen ) ) === $needle ) {
-			$haystack = trim( mb_substr( $haystack, 0, -$needleLen ) );
-		} else {
-			return false;
-		}
-		return true;
 	}
 }

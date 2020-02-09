@@ -52,7 +52,7 @@ class Article extends MWArticle {
 	public function getContent() {
 		if ( $this->getID() == 0 ) {
 		    // AtEase::quietCall( 'file_get_contents',
-			$this->mContent =  file_getcontents($this->s5file );
+			$this->mContent =  file_get_contents($this->s5file );
 		} else {
 			$this->loadContent();
 		}
