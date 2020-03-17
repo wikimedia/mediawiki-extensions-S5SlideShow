@@ -68,8 +68,18 @@ class Action extends MWAction {
 		// Check if the article is readable
 		$title = $this->getTitle();
 		for ( $r = 0; $r < $wgMaxRedirects && $title->isRedirect(); $r++ ) {
-			if ( !$title->userCan( 'read' ) ) {
-				return true;
+			if ( class_exists( 'MediaWiki\Permissions\PermissionManager' ) ) {
+				// MW 1.33+
+				if ( !\MediaWiki\MediaWikiServices::getInstance()
+					->getPermissionManager()
+					->userCan( 'read', $this->getUser(), $title )
+				) {
+					return true;
+				}
+			} else {
+				if ( !$title->userCan( 'read' ) ) {
+					return true;
+				}
 			}
 			$title = WikiPage::newFromID( $title->getArticleID() )->followRedirect();
 			$article = new MWArticle( $title );
