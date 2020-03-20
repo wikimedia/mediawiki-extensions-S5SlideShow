@@ -31,6 +31,7 @@ use ParserOptions;
 use PPFrame;
 use Title;
 use User;
+
 // more trouble than help
 // use Wikimedia\AtEase\AtEase;
 
@@ -175,7 +176,7 @@ class Render {
 		$p->setOutputType( Parser::OT_WIKI );
 		$node = $p->preprocessToDom( $content );
 		// mediawiki 1.33
-		$node= $node->node;
+		$node = $node->node;
 		$doc = $node->ownerDocument;
 		$all = $node->childNodes;
 		if ( $this->attr['headingmark'] ) {
@@ -193,11 +194,11 @@ class Render {
 				'/', '\\/', preg_quote( $this->attr['centermark'] )
 			) . '/';
 		}
-		$allLen=$all->length;
-		wfDebug(__METHOD__.": checking ".$allLen." document nodes for slide transformation");
+		$allLen = $all->length;
+		wfDebug( __METHOD__ . ": checking " . $allLen . " document nodes for slide transformation" );
 		for ( $i = 0; $i < $allLen; $i++ ) {
 			$c = $all->item( $i );
-			if ( isset($c->nodeName) && $c->nodeName == 'h' && ( $st = $this->check_slide_heading( $c ) ) !== null ) {
+			if ( isset( $c->nodeName ) && $c->nodeName == 'h' && ( $st = $this->check_slide_heading( $c ) ) !== null ) {
 				/**
 				 * Add
 				 * <ext><name>slides</name><attr>ATTRS</attr><inner>CONTENT</inner></ext>
@@ -328,14 +329,15 @@ class Render {
 		$wgParser->setHook( 'slides', [ $this, 'slides_parse' ] );
 		$wgParser->setHook( 'slidecss', [ $this, 'slidecss_parse' ] );
 		$wgParser->mShowToc = false;
-		return $this->slideParser = $wgParser;
+		$this->slideParser = $wgParser;
+		return $this->slideParser;
 	}
 
 	function getHeadItems() {
 		// Extract loader scripts and styles from OutputPage::headElement()
 		global $wgOut;
 		$skin = new Skin();
-		$context=$wgOut->getContext();
+		$context = $wgOut->getContext();
 		$context->setSkin( $skin );
 		$s = $wgOut->headElement( $skin );
 		preg_match_all(
@@ -350,7 +352,7 @@ class Render {
 								} )
 		);
 	}
-	
+
 	/**
 	 * Generate presentation HTML code
 	 */
@@ -362,13 +364,13 @@ class Render {
 			$this->loadContent();
 		}
 
-		$currentDir=getcwd();
-		$debugMsg=": trying to load slide template from ".$egS5SlideTemplateFile." relative to ".$currentDir;
-		wfDebug(__CLASS__.$debugMsg);
-		
+		$currentDir = getcwd();
+		$debugMsg = ": trying to load slide template from " . $egS5SlideTemplateFile . " relative to " . $currentDir;
+		wfDebug( __CLASS__ . $debugMsg );
+
 		// load template contents
 		// AtEase::quietCall( 'file_get_contents'
-		$slide_template = file_get_contents($egS5SlideTemplateFile );
+		$slide_template = file_get_contents( $egS5SlideTemplateFile );
 		if ( !$slide_template ) {
 			return false;
 		}
@@ -470,10 +472,10 @@ class Render {
 		}
 		return "url(extensions/S5SlideShow/$skin/" . $m[1] . ')';
 	}
-	
+
 	// https://stackoverflow.com/a/834355/1497139
-	static function endsWith(string $haystack, string $needle): bool {
-	    return substr($haystack, -strlen($needle))===$needle;
+	static function endsWith( string $haystack, string $needle ): bool {
+		return substr( $haystack, -strlen( $needle ) ) === $needle;
 	}
 
 	/**
@@ -485,28 +487,28 @@ class Render {
 		// directory of script
 		$dir = __DIR__;
 		// since 2020-09 the sources are in src subdirectory
-		if (Render::endsWith($dir,"src")) {
-		    $dir=dirname($dir);
+		if ( self::endsWith( $dir, "src" ) ) {
+			$dir = dirname( $dir );
 		}
 		$css = '';
 		if ( $print ) {
 			S5SlideShowHooks::$styles['print'] = 'print.css';
 		}
 		foreach ( S5SlideShowHooks::$styles as $k => $file ) {
-		    // first try whether there is a page for the style
+			// first try whether there is a page for the style
 			$title = Title::newFromText( "S5/$skin/$k", NS_MEDIAWIKI );
 			if ( $title->exists() ) {
 				$a = new MWArticle( $title );
 				$c = $a->getContent();
 			} else {
-			    // try getting page from file system
-			    // AtEase::quietCall('file_get_contents'
-			    $skinFile="$dir/" . str_replace( '$skin', $skin, $file);
- 				$c = file_get_contents($skinFile);
+				// try getting page from file system
+				// AtEase::quietCall('file_get_contents'
+				$skinFile = "$dir/" . str_replace( '$skin', $skin, $file );
+				$c = file_get_contents( $skinFile );
 			}
 			$c = preg_replace_callback(
-				'#url\(([^\)]*)\)#is', function( $m ) use ( $skin ) {
-					return self::styleReplaceUrl($skin, $m);
+				'#url\(([^\)]*)\)#is', function ( $m ) use ( $skin ) {
+					return self::styleReplaceUrl( $skin, $m );
 				}, $c );
 			$css .= $c;
 		}

@@ -26,6 +26,7 @@ namespace S5SlideShow;
 
 use Article as MWArticle;
 use LogEventsList;
+
 // more trouble than help
 // use Wikimedia\AtEase\AtEase;
 
@@ -51,8 +52,8 @@ class Article extends MWArticle {
 	// Get content from the file
 	public function getContent() {
 		if ( $this->getID() == 0 ) {
-		    // AtEase::quietCall( 'file_get_contents',
-			$this->mContent =  file_get_contents($this->s5file );
+			// AtEase::quietCall( 'file_get_contents',
+			$this->mContent = file_get_contents( $this->s5file );
 		} else {
 			$this->loadContent();
 		}
@@ -61,7 +62,7 @@ class Article extends MWArticle {
 
 	// Show default content from the file
 	public function showMissingArticle() {
-		global $wgOut, $wgRequest, $wgParser;
+		global $wgOut, $wgParser;
 		// Copy-paste from includes/Article.php:
 		// Show delete and move logs
 		LogEventsList::showLogExtract(
@@ -80,7 +81,7 @@ class Article extends MWArticle {
 				wfMessage( 'missingarticle-rev', $oldid )->plain()
 			)->plain();
 		} else {
- 			$text = $this->getContent();
+			$text = $this->getContent();
 		}
 		if ( $wgParser->mTagHooks['source'] ) {
 			$text = "<source lang='css'>\n$text\n</source>";

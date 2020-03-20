@@ -25,7 +25,7 @@
 namespace S5SlideShow;
 
 use Article as MWArticle;
-use WikiPage;
+
 /**
  * @author Vitaliy Filippov <vitalif@mail.ru>
  * @author Wolfgang Fahl
@@ -138,7 +138,7 @@ class S5SlideShowHooks {
 			$params['custom-title-link'] = $fp['link-title'];
 		} elseif ( !empty( $fp['no-link'] ) ) {
 		} else {
- 			$params['desc-link'] = true;
+			$params['desc-link'] = true;
 		}
 		$res .= $thumb->toHtml( $params );
 		if ( isset( $fp['thumbnail'] ) ) {

@@ -4,7 +4,7 @@
 	"extra": {
 		"installer-name": "S5SlideShow"
 	},
-	"homepage": "https:\/\/www.mediawiki.org\/wiki\/Extension:S5SlideShow",
+	"homepage": "https://www.mediawiki.org/wiki/Extension:S5SlideShow",
 	"license": "GPL-2.0-or-later",
 	"type": "mediawiki-extension",
 	"keywords": [
@@ -41,8 +41,10 @@
 		"composer/installers": "1.*,>=1.0.1"
 	},
 	"require-dev": {
-		"jakub-onderka/php-parallel-lint": "~1.0",
-		"mediawiki/mediawiki-codesniffer": "~28.0"
+		"jakub-onderka/php-parallel-lint": "1.0.0",
+		"jakub-onderka/php-console-highlighter": "0.4.0",
+		"mediawiki/minus-x": "1.1.0",
+		"mediawiki/mediawiki-codesniffer": "30.0.0"
 	},
 	"scripts": {
 		"test": [

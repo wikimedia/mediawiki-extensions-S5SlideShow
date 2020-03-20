@@ -34,11 +34,11 @@ use SkinTemplate;
  *
  */
 class Skin extends SkinApi {
-    /**
-     * set up the skin user css
-     * @param OutputPage $out
-     */
-	public function setupSkinUserCss(  $out ) {
+	/**
+	 * set up the skin user css
+	 * @param OutputPage $out
+	 */
+	public function setupSkinUserCss( $out ) {
 		SkinTemplate::setupSkinUserCss( $out );
 	}
 }
