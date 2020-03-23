@@ -38,9 +38,7 @@
 	},
 	"require": {
 		"php": ">=7.0.0",
-		"ext-mbstring": "*",
-		"composer/installers": "1.*,>=1.0.1",
-		"wikimedia/at-ease": "*"
+		"composer/installers": "1.*,>=1.0.1"
 	},
 	"require-dev": {
 		"jakub-onderka/php-parallel-lint": "~1.0",
