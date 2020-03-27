@@ -95,9 +95,9 @@ class S5SlideShowHooks {
 	}
 
 	// Hook that evaluates {{S5SLIDESHOW}} magic word
-	static function ParserGetVariableValueSwitch( $parser, $varCache, $index, &$ret ) {
+	static function ParserGetVariableValueSwitch( $parser, &$varCache, $index, &$ret ) {
 		if ( $index === 's5slideshow' ) {
-			$ret = empty( self::$parsingSlide ) ? '' : '1';
+			$ret = $varCache[$index] = empty( self::$parsingSlide ) ? '' : '1';
 		}
 	}
 
