@@ -250,7 +250,7 @@ class Render {
 		}
 		$frame = $p->getPreprocessor()->newFrame();
 		$text = $frame->expand( $node, PPFrame::RECOVER_ORIG );
-		$text = $frame->parser->mStripState->unstripBoth( $text );
+		$text = $frame->parser->getStripState()->unstripBoth( $text );
 		return $text;
 	}
 
@@ -533,11 +533,11 @@ class Render {
 	 * without LimitReport, without EditSections
 	 */
 	static function clone_options_parse( $content, $parser, $inline = false ) {
-		if ( !$parser->mTitle ) {
+		if ( !$parser->getTitle() ) {
 			wfDebug( __METHOD__ . ": no title object in parser\n" );
 			return '';
 		}
-		$oldOpt = $parser->mOptions;
+		$oldOpt = $parser->getOptions();
 		if ( !isset( $parser->extClonedOptions ) ) {
 			if ( !$oldOpt ) {
 				global $wgUser;
@@ -549,7 +549,7 @@ class Render {
 			$parser->extClonedOptions = $opt;
 		}
 		$html = $parser->parse(
-			$content, $parser->mTitle, $parser->extClonedOptions, !$inline, false
+			$content, $parser->getTitle(), $parser->extClonedOptions, !$inline, false
 		)->getText();
 		$parser->mOptions = $oldOpt;
 		return $html;
@@ -563,15 +563,15 @@ class Render {
 		$content, $attr, $parser, $frame = null, $addmsg = ''
 	) {
 		global $wgScriptPath, $wgParser, $wgContLang;
-		if ( !$parser->mTitle ) {
+		if ( !$parser->getTitle() ) {
 			wfDebug( __METHOD__ . ": no title object in parser\n" );
 			return '';
 		}
 		// Create slideshow object
 		$attr['content'] = $content;
-		$slideShow = new Render( $parser->mTitle, null, $attr );
+		$slideShow = new Render( $parser->getTitle(), null, $attr );
 		$content = '';
-		$article = new MWArticle( $parser->mTitle );
+		$article = new MWArticle( $parser->getTitle() );
 		foreach ( [ 'title', 'subtitle', 'author', 'footer', 'subfooter' ] as $key ) {
 			if ( isset( $slideShow->attr[$key] ) && $slideShow->attr[$key] != '' ) {
 				$value = $slideShow->attr[$key];
@@ -586,7 +586,7 @@ class Render {
 			}
 		}
 		// FIXME remove hardcoded '.png', /extensions/S5SlideShow/, "Slide Show"
-		$url = htmlspecialchars( $parser->mTitle->getLocalUrl( [ 'action' => 'slide' ] ) );
+		$url = htmlspecialchars( $parser->getTitle()->getLocalUrl( [ 'action' => 'slide' ] ) );
 		$style_title = Title::newFromText(
 			'S5-' . $slideShow->attr['style'] . '-preview.png', NS_FILE
 		);
@@ -697,7 +697,7 @@ class Render {
 		if (
 			!empty( $attr['view'] ) && ( $attr['view'] == 'true' || $attr['view'] == '1' )
 		) {
-			$parser->mOutput->addHeadItem(
+			$parser->getOutput()->addHeadItem(
 				'<style type="text/css">' . $content . '</style>'
 			);
 		}
