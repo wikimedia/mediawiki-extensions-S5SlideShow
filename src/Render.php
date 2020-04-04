@@ -26,6 +26,7 @@
 namespace S5SlideShow;
 
 use Article as MWArticle;
+use MediaWiki\MediaWikiServices;
 use Parser;
 use ParserOptions;
 use PPFrame;
@@ -461,7 +462,13 @@ class Render {
 	 */
 	static function styleReplaceUrl( $skin, $m ) {
 		$t = Title::newFromText( $m[1], NS_FILE );
-		$f = wfLocalFile( $t );
+		if ( method_exists( MediaWikiServices::class, 'getRepoGroup' ) ) {
+			// MediaWiki 1.34+
+			$f = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
+				->newFile( $t );
+		} else {
+			$f = wfLocalFile( $t );
+		}
 		if ( $f->exists() ) {
 			return 'url(' . $f->getFullUrl() . ')';
 		}
@@ -590,8 +597,14 @@ class Render {
 		$style_title = Title::newFromText(
 			'S5-' . $slideShow->attr['style'] . '-preview.png', NS_FILE
 		);
+		if ( method_exists( MediaWikiServices::class, 'getRepoGroup' ) ) {
+			// MediaWiki 1.34+
+			$localRepo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
+		} else {
+			$localRepo = RepoGroup::singleton()->getLocalRepo();
+		}
 		if (
-			$style_title && ( $style_preview = wfLocalFile( $style_title ) ) &&
+			$style_title && ( $style_preview = $localRepo->newFile( $style_title ) ) &&
 			$style_preview->exists()
 		) {
 			$style_preview = $style_preview->getTitle()->getPrefixedText();
