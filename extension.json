@@ -46,7 +46,8 @@
         ]
     },
     "ExtensionMessagesFiles": {
-        "S5SlideShowI18n": "src/I18n.php"
+		"S5SlideShowMagic": "src/S5SlideShow.i18n.magic.php",
+		"S5SlideShowAlias": "src/S5SlideShow.i18n.alias.php"
     },
     "AutoloadClasses": {
         "S5SlideShow\\S5SlideShowHooks": "src/S5SlideShowHooks.php",

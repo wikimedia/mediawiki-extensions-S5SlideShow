@@ -30,7 +30,7 @@ use SpecialPage;
 
 class SpecialS5SlideShow extends SpecialPage {
 	public function __construct() {
-		parent::__construct( 's5SlideShow' );
+		parent::__construct( 'S5SlideShow' );
 	}
 
 	/**
