@@ -174,8 +174,9 @@ class S5SlideShowHooks {
 
 	// Used to display CSS files on S5 skin CSS pages in edit mode
 	static function AlternateEdit( $editpage ) {
-		if ( $editpage->mArticle instanceof MWArticle && !$editpage->mArticle->exists() ) {
-			$editpage->mPreloadText = $editpage->mArticle->getPage()->getContent();
+		$article = $editpage->getArticle();
+		if ( $article instanceof MWArticle && !$article->getPage()->exists() ) {
+			$editpage->mPreloadText = $article->getPage()->getContent();
 		}
 		return true;
 	}
