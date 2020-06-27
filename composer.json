@@ -49,10 +49,11 @@
 	"scripts": {
 		"test": [
 			"parallel-lint . --exclude vendor",
-			"phpcs -p -s ."
+			"phpcs -p -s .",
+			"minus-x check ."
 		],
 		"fix": [
-			"phpcbf .",
+			"minus-x fix .",
 			"phpcbf"
 		]
 	}
