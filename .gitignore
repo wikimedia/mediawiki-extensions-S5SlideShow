@@ -3,3 +3,4 @@ bitplan
 /vendor
 *.swp
 /composer.lock
+/node_modules
