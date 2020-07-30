@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rail"
+		]
+	},
+	"special-s5SlideShow-title": "Konfiguracja S5SlideShow",
+	"s5slide-header-title": "Tytuł",
+	"s5slide-header-subtitle": "Podtytuł",
+	"s5slide-header-footer": "Stopka",
+	"s5slide-header-author": "Autor"
+}

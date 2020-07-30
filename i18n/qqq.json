@@ -1,5 +1,7 @@
 {
-	"@metadata": {},
+	"@metadata": {
+		"authors": []
+	},
 	"s5slide-name": "{{name}}",
 	"s5slide-desc": "{{desc|name=S5SlideShow|url=https://www.mediawiki.org/wiki/Extension:S5SlideShow}}",
 	"special-s5SlideShow-title": "Used as page title of [[Special:S5SlideShow]]",
