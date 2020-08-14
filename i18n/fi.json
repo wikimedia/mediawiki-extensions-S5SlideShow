@@ -4,5 +4,8 @@
 			"Pyscowicz"
 		]
 	},
+	"s5slide-header-title": "Otsikko",
+	"s5slide-header-subtitle": "Alaotsikko",
+	"s5slide-header-footer": "Alatunniste",
 	"s5slide-header-author": "Tekijä"
 }
