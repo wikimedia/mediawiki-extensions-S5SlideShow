@@ -45,18 +45,32 @@ use User;
  */
 
 class Render {
-	var $sTitle, $sArticle, $pageContent;
+	/** @var Title */
+	private $sTitle;
+	/** @var MWArticle */
+	private $sArticle;
+	/** @var Content */
+	private $pageContent;
 
-	var $slideParser, $parserOptions;
-	static $slideno = 0;
+	/** @var Parser */
+	private $slideParser;
+	/** @var ParserOptions */
+	private $parserOptions;
+	/** @var int */
+	private static $slideno = 0;
 
-	var $slides, $css, $attr;
+	/** @var array */
+	private $slides;
+	/** @var array */
+	private $css;
+	/** @var array */
+	public $attr;
 
 	/**
 	 * Constructor. If $attr is not an array(), article content
 	 * will be parsed and attributes will be taken from there.
 	 */
-	function __construct( $sTitle, $sContent = null, $attr = null ) {
+	public function __construct( $sTitle, $sContent = null, $attr = null ) {
 		if ( !is_object( $sTitle ) ) {
 			wfDebug( __CLASS__ . ": Error! Pass a title object, NOT a title string!\n" );
 			return false;
@@ -171,7 +185,7 @@ class Render {
 	/**
 	 * This function transforms section slides into <slides> tags
 	 */
-	function transform_section_slides( $content ) {
+	private function transform_section_slides( $content ) {
 		$p = $this->getParser();
 		$content = $p->preprocess( $content, $this->sTitle, $this->parserOptions );
 		$p->setOutputType( Parser::OT_WIKI );
@@ -258,7 +272,7 @@ class Render {
 	/**
 	 * Extract slides from wiki-text $content
 	 */
-	function loadContent( $content = null ) {
+	private function loadContent( $content = null ) {
 		if ( $content === null ) {
 			if ( method_exists( $this->pageContent, 'getText' ) ) {
 				$content = $this->pageContent->getText();
@@ -293,7 +307,7 @@ class Render {
 	 * Parse slide content using a copy of $wgParser,
 	 * save slides and slide stylesheets into $this and return resulting HTML
 	 */
-	function parse( $text, $inline = false, $title = null ) {
+	private function parse( $text, $inline = false, $title = null ) {
 		global $wgOut;
 		if ( !$title ) {
 			$title = $this->sTitle;
@@ -311,7 +325,7 @@ class Render {
 	}
 
 	// Create parser object for $this->parse()
-	function getParser() {
+	private function getParser() {
 		if ( $this->slideParser ) {
 			return $this->slideParser;
 		}
@@ -334,7 +348,7 @@ class Render {
 		return $this->slideParser;
 	}
 
-	function getHeadItems() {
+	private function getHeadItems() {
 		// Extract loader scripts and styles from OutputPage::headElement()
 		global $wgOut;
 		$skin = new Skin();
@@ -357,7 +371,7 @@ class Render {
 	/**
 	 * Generate presentation HTML code
 	 */
-	function genSlideFile( $printPageSize = false ) {
+	public function genSlideFile( $printPageSize = false ) {
 		global $egS5SlideTemplateFile;
 		global $wgContLang, $wgOut;
 
@@ -460,7 +474,7 @@ class Render {
 	 * Function to replace URLs in S5 skin stylesheet
 	 * $m is the match array coming from preg_replace_callback
 	 */
-	static function styleReplaceUrl( $skin, $m ) {
+	private static function styleReplaceUrl( $skin, $m ) {
 		$t = Title::newFromText( $m[1], NS_FILE );
 		if ( method_exists( MediaWikiServices::class, 'getRepoGroup' ) ) {
 			// MediaWiki 1.34+
@@ -481,7 +495,7 @@ class Render {
 	}
 
 	// https://stackoverflow.com/a/834355/1497139
-	static function endsWith( string $haystack, string $needle ): bool {
+	private static function endsWith( string $haystack, string $needle ): bool {
 		return substr( $haystack, -strlen( $needle ) ) === $needle;
 	}
 
@@ -489,7 +503,7 @@ class Render {
 	 * Generate CSS stylesheet for a given S5 skin
 	 * TODO cache generated stylesheets and flush the cache after saving style articles
 	 */
-	static function genStyle( $skin, $print = false ) {
+	public static function genStyle( $skin, $print = false ) {
 		global $wgOut;
 		// directory of script
 		$dir = __DIR__;
@@ -527,7 +541,7 @@ class Render {
 	/**
 	 * <slideshow> - article view mode, backwards compatibility
 	 */
-	static function slideshow_legacy( $content, $attr, $parser, $frame = null ) {
+	public static function slideshow_legacy( $content, $attr, $parser, $frame = null ) {
 		return self::slideshow_view(
 			$content, $attr, $parser, $frame,
 			'<div style="width: 240px; color: red">Warning: legacy &lt;slide&gt;' .
@@ -539,7 +553,7 @@ class Render {
 	 * Parse content using an existing parser and cloned options
 	 * without LimitReport, without EditSections
 	 */
-	static function clone_options_parse( $content, $parser, $inline = false ) {
+	private static function clone_options_parse( $content, $parser, $inline = false ) {
 		if ( !$parser->getTitle() ) {
 			wfDebug( __METHOD__ . ": no title object in parser\n" );
 			return '';
@@ -635,14 +649,14 @@ class Render {
 
 	// <slideshow> - slideshow parse mode
 	// saves parameters into $this
-	function slideshow_parse( $content, $attr, $parser ) {
+	public function slideshow_parse( $content, $attr, $parser ) {
 		$attr['content'] = $content;
 		$this->setAttributes( $attr );
 		return '';
 	}
 
 	// <slides> - article view mode
-	static function slides_view( $content, $attr, $parser ) {
+	public static function slides_view( $content, $attr, $parser ) {
 		if ( !empty( $attr['split'] ) ) {
 			$slides = preg_split(
 				'/' . str_replace( '/', '\\/', $attr['split'] ) . '/', $content
@@ -686,7 +700,7 @@ class Render {
 	}
 
 	// <slides> - slideshow parse mode
-	function slides_parse( $content, $attr, $parser ) {
+	public function slides_parse( $content, $attr, $parser ) {
 		if ( isset( $attr['split'] ) ) {
 			$slides = preg_split(
 				'/' . str_replace( '/', '\\/', $attr['split'] ) . '/', $content
@@ -705,7 +719,7 @@ class Render {
 	}
 
 	// <slidecss> - article view mode
-	static function slidecss_view( $content, $attr, $parser ) {
+	public static function slidecss_view( $content, $attr, $parser ) {
 		// use this CSS only for <slidecss view="true">
 		if (
 			!empty( $attr['view'] ) && ( $attr['view'] == 'true' || $attr['view'] == '1' )
@@ -718,12 +732,12 @@ class Render {
 	}
 
 	// <slidecss> - slideshow parse mode
-	function slidecss_parse( $content, $attr, $parser ) {
+	public function slidecss_parse( $content, $attr, $parser ) {
 		$this->css[] = $content;
 	}
 
 	// stub for tag hooks
-	static function empty_tag_hook() {
+	public static function empty_tag_hook() {
 		return '';
 	}
 }

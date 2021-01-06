@@ -34,16 +34,18 @@ use Article as MWArticle;
  */
 
 class S5SlideShowHooks {
-	static $styles = [
+	/** @var string[] */
+	private static $styles = [
 		'core.css'    => 's5-core.css',
 		'base.css'    => 's5-base.css',
 		'framing.css' => 's5-framing.css',
 		'pretty.css'  => '$skin/pretty.css',
 	];
-	static $parsingSlide = false;
+	/** @var bool */
+	public static $parsingSlide = false;
 
 	// Setup parser hooks for S5
-	static function ParserFirstCallInit( $parser ) {
+	public static function ParserFirstCallInit( $parser ) {
 		if ( !isset( $parser->extS5Hooks ) ) {
 			$parser->setHook(
 				'slideshow', [ 'S5SlideShow\Render', 'slideshow_view' ]
@@ -79,7 +81,7 @@ class S5SlideShowHooks {
 	}
 
 	// Setup hook for image scaling hack
-	static function Setup() {
+	public static function Setup() {
 		// global $wgActions;
 		// echo "<pre>";var_dump($wgActions);exit;
 		// global $egS5BrowserScaleHack, $wgHooks;
@@ -90,19 +92,19 @@ class S5SlideShowHooks {
 	}
 
 	// Hook that creates {{S5SLIDESHOW}} magic word
-	static function MagicWordwgVariableIDs( &$mVariablesIDs ) {
+	public static function MagicWordwgVariableIDs( &$mVariablesIDs ) {
 		$mVariablesIDs[] = 's5slideshow';
 	}
 
 	// Hook that evaluates {{S5SLIDESHOW}} magic word
-	static function ParserGetVariableValueSwitch( $parser, &$varCache, $index, &$ret ) {
+	public static function ParserGetVariableValueSwitch( $parser, &$varCache, $index, &$ret ) {
 		if ( $index === 's5slideshow' ) {
 			$ret = $varCache[$index] = empty( self::$parsingSlide ) ? '' : '1';
 		}
 	}
 
 	// Render pictures differently in slide show mode
-	static function ImageBeforeProduceHTML(
+	public static function ImageBeforeProduceHTML(
 		$skin, $title, $file, $frameParams, $handlerParams, $time, &$res
 	) {
 		global $egS5BrowserScaleHack;
@@ -157,7 +159,7 @@ class S5SlideShowHooks {
 	}
 
 	// Used to display CSS files on S5 skin CSS pages when they don't exist
-	static function ArticleFromTitle( $title, &$article ) {
+	public static function ArticleFromTitle( $title, &$article ) {
 		if ( $title->getNamespace() === NS_MEDIAWIKI &&
 			 preg_match(
 				 '#^S5/([\w-]+)/((core|base|framing|pretty).css)$#s', $title->getText(), $m
@@ -173,7 +175,7 @@ class S5SlideShowHooks {
 	}
 
 	// Used to display CSS files on S5 skin CSS pages in edit mode
-	static function AlternateEdit( $editpage ) {
+	public static function AlternateEdit( $editpage ) {
 		$article = $editpage->getArticle();
 		if ( $article instanceof MWArticle && !$article->getPage()->exists() ) {
 			$editpage->mPreloadText = $article->getPage()->getContent();

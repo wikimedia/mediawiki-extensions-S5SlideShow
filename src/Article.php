@@ -40,7 +40,10 @@ use LogEventsList;
 // Used to display CSS files instead of non-existing special articles
 // (MediaWiki:S5/<skin>/<stylesheet>)
 class Article extends MWArticle {
-	var $s5skin, $s5file;
+	/** @var mixed unknown */
+	private $s5skin;
+	/** @var string file name */
+	private $s5file;
 	// Create the object and remember s5skin and s5file
 	public function __construct( $title, $s5skin, $s5file ) {
 		$this->mPage = $this->newPage( $title );
