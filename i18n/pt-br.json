@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Eduardo Addad de Oliveira"
+			"Eduardo Addad de Oliveira",
+			"Eduardoaddad"
 		]
 	},
 	"s5slide-desc": "S5SlideShow é uma extensão MediaWiki que permite a criação simples, rápida e conveniente de apresentações de slides usando S5 no contexto de páginas MediaWiki e Wiki.",
