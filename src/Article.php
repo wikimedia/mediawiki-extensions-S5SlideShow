@@ -86,7 +86,7 @@ class Article extends MWArticle {
 		} else {
 			$text = $this->getContent();
 		}
-		if ( $wgParser->mTagHooks['source'] ) {
+		if ( in_array( 'source', $wgParser->getTags(), true ) ) {
 			$text = "<source lang='css'>\n$text\n</source>";
 		}
 		$text = "<div class='noarticletext'>\n$text\n</div>";
