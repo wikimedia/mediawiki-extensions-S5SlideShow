@@ -4,3 +4,4 @@ bitplan
 *.swp
 /composer.lock
 /node_modules
+/.eslintcache
