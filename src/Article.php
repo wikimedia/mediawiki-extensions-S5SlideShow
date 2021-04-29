@@ -26,6 +26,7 @@ namespace S5SlideShow;
 
 use Article as MWArticle;
 use LogEventsList;
+use MediaWiki\MediaWikiServices;
 
 // more trouble than help
 // use Wikimedia\AtEase\AtEase;
@@ -65,7 +66,7 @@ class Article extends MWArticle {
 
 	// Show default content from the file
 	public function showMissingArticle() {
-		global $wgOut, $wgParser;
+		global $wgOut;
 		// Copy-paste from includes/Article.php:
 		// Show delete and move logs
 		LogEventsList::showLogExtract(
@@ -86,7 +87,9 @@ class Article extends MWArticle {
 		} else {
 			$text = $this->getContent();
 		}
-		if ( in_array( 'source', $wgParser->getTags(), true ) ) {
+
+		$parser = MediaWikiServices::getInstance()->getParser();
+		if ( in_array( 'source', $parser->getTags(), true ) ) {
 			$text = "<source lang='css'>\n$text\n</source>";
 		}
 		$text = "<div class='noarticletext'>\n$text\n</div>";

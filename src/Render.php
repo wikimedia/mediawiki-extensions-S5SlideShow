@@ -305,7 +305,7 @@ class Render {
 	}
 
 	/**
-	 * Parse slide content using a copy of $wgParser,
+	 * Parse slide content using a copy of Parser,
 	 * save slides and slide stylesheets into $this and return resulting HTML
 	 */
 	private function parse( $text, $inline = false, $title = null ) {
@@ -330,7 +330,7 @@ class Render {
 		if ( $this->slideParser ) {
 			return $this->slideParser;
 		}
-		global $wgParser, $wgUser;
+		global $wgUser;
 		$this->parserOptions = ParserOptions::newFromUser( $wgUser );
 		// deprecated since 1.31, use ParserOutput::getText() options instead.
 		//$this->parserOptions->setEditSection( false );
@@ -338,14 +338,15 @@ class Render {
 		$this->parserOptions->enableLimitReport( false );
 		// Since $this->parse() is only used in ?action=slide,
 		// we can use it directly without cloning or creating a new object
-		// But $wgParser may be a StubObject, so trigger unstub and first call init
-		$wgParser->parse( " ", $this->sTitle, $this->parserOptions, false, true );
-		$wgParser->setHook( 'slideshow', __CLASS__ . '::empty_tag_hook' );
-		$wgParser->setHook( 'slide', __CLASS__ . '::empty_tag_hook' );
-		$wgParser->setHook( 'slides', [ $this, 'slides_parse' ] );
-		$wgParser->setHook( 'slidecss', [ $this, 'slidecss_parse' ] );
-		$wgParser->mShowToc = false;
-		$this->slideParser = $wgParser;
+		// But Parser may be a StubObject, so trigger unstub and first call init
+		$parser = MediaWikiServices::getInstance()->getParser();
+		$parser->parse( " ", $this->sTitle, $this->parserOptions, false, true );
+		$parser->setHook( 'slideshow', __CLASS__ . '::empty_tag_hook' );
+		$parser->setHook( 'slide', __CLASS__ . '::empty_tag_hook' );
+		$parser->setHook( 'slides', [ $this, 'slides_parse' ] );
+		$parser->setHook( 'slidecss', [ $this, 'slidecss_parse' ] );
+		$parser->mShowToc = false;
+		$this->slideParser = $parser;
 		return $this->slideParser;
 	}
 
@@ -584,7 +585,7 @@ class Render {
 	public static function slideshow_view(
 		$content, $attr, $parser, $frame = null, $addmsg = ''
 	) {
-		global $wgScriptPath, $wgParser;
+		global $wgScriptPath;
 		if ( !$parser->getTitle() ) {
 			wfDebug( __METHOD__ . ": no title object in parser\n" );
 			return '';
@@ -613,6 +614,8 @@ class Render {
 		$style_title = Title::newFromText(
 			'S5-' . $slideShow->attr['style'] . '-preview.png', NS_FILE
 		);
+
+		$parser = MediaWikiServices::getInstance()->getParser();
 		if ( method_exists( MediaWikiServices::class, 'getRepoGroup' ) ) {
 			// MediaWiki 1.34+
 			$localRepo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
@@ -625,14 +628,14 @@ class Render {
 		) {
 			$style_preview = $style_preview->getTitle()->getPrefixedText();
 			$style_preview = self::clone_options_parse(
-				"[[$style_preview|240px|link=]]", $wgParser, true
+				"[[$style_preview|240px|link=]]", $parser, true
 			);
 		} else {
 			$style_preview = '<img src="' . $wgScriptPath . '/extensions/S5SlideShow/'
 						   . $slideShow->attr['style'] . '/preview.png" '
 						   . 'alt="Slide Show" width="240px" />';
 		}
-		$inside = self::clone_options_parse( $content, $wgParser, true );
+		$inside = self::clone_options_parse( $content, $parser, true );
 		$html = '<script type="text/javascript" src="' . $wgScriptPath
 			  . '/extensions/S5SlideShow/contentScale.js"></script>'
 			  . '<script type="text/javascript" src="' . $wgScriptPath
