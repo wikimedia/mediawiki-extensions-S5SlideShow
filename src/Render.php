@@ -92,7 +92,7 @@ class Render {
 	 * Parse attribute hash and save them into $this
 	 */
 	public function setAttributes( $attr ) {
-		global $wgContLang, $wgUser, $egS5SlideHeadingMark, $egS5SlideIncMark,
+		global $wgUser, $egS5SlideHeadingMark, $egS5SlideIncMark,
 			$egS5SlideCenterMark, $egS5DefaultStyle, $egS5Scaled;
 		// Get attributes from tag content
 		if (
@@ -134,19 +134,20 @@ class Render {
 				$attr['author'] = $wgUser->getRealName();
 			}
 		}
+		$contentLanguage = MediaWikiServices::getInstance()->getContentLanguage();
 		// Author and date in the subfooter by default
 		if ( !isset( $attr['subfooter'] ) ) {
 			$attr['subfooter'] = $attr['author'];
 			if ( $attr['subfooter'] ) {
 				$attr['subfooter'] .= ', ';
 			}
-			$attr['subfooter'] .= $wgContLang->timeanddate(
+			$attr['subfooter'] .= $contentLanguage->timeanddate(
 				$this->sArticle->getTimestamp(), true
 			);
 		} else {
 			$attr['subfooter'] = str_ireplace(
 				'{{date}}',
-				$wgContLang->timeanddate( $this->sArticle->getTimestamp(), true ),
+				$contentLanguage->timeanddate( $this->sArticle->getTimestamp(), true ),
 				$attr['subfooter']
 			);
 		}
@@ -373,7 +374,7 @@ class Render {
 	 */
 	public function genSlideFile( $printPageSize = false ) {
 		global $egS5SlideTemplateFile;
-		global $wgContLang, $wgOut;
+		global $wgOut;
 
 		if ( !$this->slides ) {
 			$this->loadContent();
@@ -462,7 +463,7 @@ class Render {
 			array_values( $replace ),
 			$slide_template
 		);
-		$html = $wgContLang->convert( $html );
+		$html = MediaWikiServices::getInstance()->getContentLanguage()->convert( $html );
 
 		// output generated content
 		$wgOut->disable();
@@ -583,7 +584,7 @@ class Render {
 	public static function slideshow_view(
 		$content, $attr, $parser, $frame = null, $addmsg = ''
 	) {
-		global $wgScriptPath, $wgParser, $wgContLang;
+		global $wgScriptPath, $wgParser;
 		if ( !$parser->getTitle() ) {
 			wfDebug( __METHOD__ . ": no title object in parser\n" );
 			return '';
@@ -593,13 +594,14 @@ class Render {
 		$slideShow = new Render( $parser->getTitle(), null, $attr );
 		$content = '';
 		$article = new MWArticle( $parser->getTitle() );
+		$contentLanguage = MediaWikiServices::getInstance()->getContentLanguage();
 		foreach ( [ 'title', 'subtitle', 'author', 'footer', 'subfooter' ] as $key ) {
 			if ( isset( $slideShow->attr[$key] ) && $slideShow->attr[$key] != '' ) {
 				$value = $slideShow->attr[$key];
 				if ( mb_strpos( $value, "{{date}}" ) !== false ) {
 					$value = str_ireplace(
 						'{{date}}',
-						$wgContLang->timeanddate( $article->getTimestamp(), true ),
+						$contentLanguage->timeanddate( $article->getTimestamp(), true ),
 						$value
 					);
 				}
