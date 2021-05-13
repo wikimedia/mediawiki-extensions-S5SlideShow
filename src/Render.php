@@ -362,7 +362,7 @@ class Render {
 		);
 		return implode(
 			"\n", array_filter( $m[0],
-								function ( $s ) {
+								static function ( $s ) {
 									return strpos( $s, 'commonPrint' ) === false;
 								} )
 		);
