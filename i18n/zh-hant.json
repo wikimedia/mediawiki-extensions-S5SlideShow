@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kly"
+		]
+	},
+	"special-s5SlideShow-title": "S5SlideShow 設置",
+	"s5slide-header-title": "標題",
+	"s5slide-header-subtitle": "副標題",
+	"s5slide-header-footer": "頁尾",
+	"s5slide-header-subfooter": "副頁尾",
+	"s5slide-header-author": "作者"
+}

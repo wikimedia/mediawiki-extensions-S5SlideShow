@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joetaras"
+		]
+	},
+	"special-s5SlideShow-title": "Configurazione de S5SlideShow",
+	"s5slide-header-title": "Titole",
+	"s5slide-header-subtitle": "Sotto titole",
+	"s5slide-header-footer": "Piè de pàgene",
+	"s5slide-header-subfooter": "Sotte piè de pàgene",
+	"s5slide-header-author": "Autore"
+}

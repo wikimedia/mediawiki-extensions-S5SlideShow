@@ -2,12 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Vitaliy Filippov",
-			"Wolfgang Fahl"
+			"Wolfgang Fahl",
+			"Wladek92"
 		]
 	},
 	"s5slide-name": "S5SlideShow",
 	"s5slide-desc": "S5SlideShow est une extension MediaWiki permettant la création simple, rapide et pratique de diaporamas utilisant S5 dans le contexte des pages MediaWiki et Wiki.",
-	"special-s5SlideShow-title": "S5SlideShow configuration",
+	"special-s5SlideShow-title": "Configuration de S5SlideShow",
 	"special-s5SlideShow-intro": "",
 	"s5slide-header-title": "Titre",
 	"s5slide-header-subtitle": "Sous-titre",
