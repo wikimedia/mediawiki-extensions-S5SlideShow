@@ -6,10 +6,13 @@
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingParamTag" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingReturn" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.WrongStyle" />
+		<exclude name="MediaWiki.Commenting.PropertyDocumentation.MissingDocumentationPublic" />
 		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures" />
 		<exclude name="MediaWiki.Files.ClassMatchesFilename.NotMatch" />
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
 		<exclude name="MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix" />
+		<exclude name="MediaWiki.Usage.StaticClosure.StaticClosure" />
+		<exclude name="PSR2.Classes.PropertyDeclaration.Multiple" />
 		<exclude name="PSR2.Classes.PropertyDeclaration.VarUsed" />
 		<exclude name="PSR2.Classes.PropertyDeclaration.ScopeMissing" />
 		<exclude name="Squiz.Scope.MethodScope.Missing" />
@@ -17,5 +20,5 @@
 	</rule>
 	<file>.</file>
 	<arg name="encoding" value="UTF-8"/>
-	<arg name="extensions" value="php,php5,inc,sample"/>
+	<arg name="extensions" value="php,sample"/>
 </ruleset>
