@@ -1,4 +1,5 @@
 {
+	"name": "S5SlideShow",
 	"private": true,
 	"scripts": {
 		"test": "grunt test"
