@@ -10,6 +10,7 @@
 		<exclude name="MediaWiki.Files.ClassMatchesFilename.NotMatch" />
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
 		<exclude name="MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix" />
+		<exclude name="MediaWiki.Usage.StaticClosure.StaticClosure" />
 	</rule>
 	<file>.</file>
 	<arg name="encoding" value="UTF-8"/>
