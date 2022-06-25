@@ -23,6 +23,7 @@ namespace S5SlideShow;
 
 use Action as MWAction;
 use Article as MWArticle;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @author Vitaliy Filippov <vitalif@mail.ru>
@@ -67,6 +68,12 @@ class Action extends MWAction {
 		}
 		// Check if the article is readable
 		$title = $this->getTitle();
+		if ( method_exists( MediaWikiServices::class, 'getWikiPageFactory' ) ) {
+			// MW 1.36+
+			$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
+		} else {
+			$wikiPageFactory = null;
+		}
 		for ( $r = 0; $r < $wgMaxRedirects && $title->isRedirect(); $r++ ) {
 			if ( class_exists( 'MediaWiki\Permissions\PermissionManager' ) ) {
 				// MW 1.33+
@@ -81,7 +88,12 @@ class Action extends MWAction {
 					return true;
 				}
 			}
-			$title = WikiPage::newFromID( $title->getArticleID() )->followRedirect();
+			if ( $wikiPageFactory !== null ) {
+				// MW 1.36+
+				$title = $wikiPageFactory->newFromID( $title->getArticleID() )->followRedirect();
+			} else {
+				$title = WikiPage::newFromID( $title->getArticleID() )->followRedirect();
+			}
 			$article = new MWArticle( $title );
 		}
 		// Hack for CustIS live preview
