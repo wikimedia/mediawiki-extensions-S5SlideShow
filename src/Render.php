@@ -92,7 +92,7 @@ class Render {
 	 * Parse attribute hash and save them into $this
 	 */
 	public function setAttributes( $attr ) {
-		global $wgUser, $egS5SlideHeadingMark, $egS5SlideIncMark,
+		global $egS5SlideHeadingMark, $egS5SlideIncMark,
 			$egS5SlideCenterMark, $egS5DefaultStyle, $egS5Scaled;
 		// Get attributes from tag content
 		if (
@@ -131,7 +131,7 @@ class Render {
 				$attr['author'] = User::newFromId( $rev->getUser() )->getRealName();
 			} else {
 				// Not saved yet
-				$attr['author'] = $wgUser->getRealName();
+				$attr['author'] = $this->sArticle->getUser()->getRealName();
 			}
 		}
 		$contentLanguage = MediaWikiServices::getInstance()->getContentLanguage();
@@ -330,8 +330,7 @@ class Render {
 		if ( $this->slideParser ) {
 			return $this->slideParser;
 		}
-		global $wgUser;
-		$this->parserOptions = ParserOptions::newFromUser( $wgUser );
+		$this->parserOptions = ParserOptions::newFromContext( $this->sArticle->getContext() );
 		// deprecated since 1.31, use ParserOutput::getText() options instead.
 		//$this->parserOptions->setEditSection( false );
 		$this->parserOptions->setNumberHeadings( false );
@@ -563,8 +562,7 @@ class Render {
 		$oldOpt = $parser->getOptions();
 		if ( !isset( $parser->extClonedOptions ) ) {
 			if ( !$oldOpt ) {
-				global $wgUser;
-				$oldOpt = ParserOptions::newFromUser( $wgUser );
+				$oldOpt = ParserOptions::newFromContext( \RequestContext::getMain() );
 			}
 			$opt = clone $oldOpt;
 			$opt->enableLimitReport( false );
