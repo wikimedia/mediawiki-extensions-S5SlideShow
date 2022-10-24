@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"special-s5SlideShow-title": "Configuration de S5SlideShow",
+	"s5slide-header-title": "Titulo",
+	"s5slide-header-subtitle": "Subtitulo",
+	"s5slide-header-footer": "Pede",
+	"s5slide-header-subfooter": "Subpede",
+	"s5slide-header-author": "Autor"
+}
