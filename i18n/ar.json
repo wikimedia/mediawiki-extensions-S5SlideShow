@@ -1,8 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"محمد أحمد عبد الفتاح"
+			"محمد أحمد عبد الفتاح",
+			"Meno25"
 		]
 	},
+	"special-s5SlideShow-title": "تكوين S5SlideShow",
+	"s5slide-header-title": "العنوان",
+	"s5slide-header-subtitle": "العنوان الفرعي",
+	"s5slide-header-footer": "التذييل",
+	"s5slide-header-subfooter": "ملاحظة سفلية",
 	"s5slide-header-author": "المؤلف"
 }
