@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"s5slide-name": "S5SlideShow",
+	"special-s5SlideShow-title": "Konfiguracija S5SlideShow",
+	"s5slide-header-title": "Naslov",
+	"s5slide-header-subtitle": "Podnaslov",
+	"s5slide-header-footer": "Noga",
+	"s5slide-header-subfooter": "Podnožje",
+	"s5slide-header-author": "Avtor"
+}
