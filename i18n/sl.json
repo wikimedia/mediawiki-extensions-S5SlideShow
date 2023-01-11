@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"s5slide-name": "S5SlideShow",
+	"s5slide-desc": "S5SlideShow je razširitev za MediaWiki, ki omogoča preprosto, hitro in priročno ustvarjanje diaprojekcij z uporabo S5 v kontekstu MediaWikija in vikistrani.",
+	"special-s5SlideShow-title": "Konfiguracija S5SlideShow",
+	"s5slide-header-title": "Naslov",
+	"s5slide-header-subtitle": "Podnaslov",
+	"s5slide-header-footer": "Noga",
+	"s5slide-header-subfooter": "Podnožje",
+	"s5slide-header-author": "Avtor"
+}
