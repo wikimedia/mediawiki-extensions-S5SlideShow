@@ -4,5 +4,10 @@
 			"Amire80"
 		]
 	},
-	"s5slide-header-title": "כותרת"
+	"special-s5SlideShow-title": "תצורת S5SlideShow",
+	"s5slide-header-title": "כותרת",
+	"s5slide-header-subtitle": "כותרת־משנה",
+	"s5slide-header-footer": "כותרת תחתונה",
+	"s5slide-header-subfooter": "תחתית־משנה",
+	"s5slide-header-author": "מחבר"
 }
