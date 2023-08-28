@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nokeoo"
+		]
+	},
+	"s5slide-desc": "S5SlideShow – „MediaWiki“ plėtinys, leidžiantis paprastai, greitai ir patogiai kurti skaidrių demonstracijas naudojant S5 „MediaWiki“ ir viki puslapių kontekste.",
+	"special-s5SlideShow-title": "S5SlideShow konfigūracija",
+	"s5slide-header-title": "Pavadinimas",
+	"s5slide-header-subtitle": "Poraštė",
+	"s5slide-header-footer": "Pabaigos tekstas",
+	"s5slide-header-subfooter": "Pabaigos teksto papildymas",
+	"s5slide-header-author": "Autorius"
+}
