@@ -1,10 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Romaine"
+			"Romaine",
+			"McDutchie"
 		]
 	},
+	"special-s5SlideShow-title": "Instellingen voor S5SlideShow",
 	"s5slide-header-title": "Titel",
 	"s5slide-header-subtitle": "Ondertitel",
+	"s5slide-header-footer": "Voettekst",
+	"s5slide-header-subfooter": "Ondervoettekst",
 	"s5slide-header-author": "Auteur"
 }
