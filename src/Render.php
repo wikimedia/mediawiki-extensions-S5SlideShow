@@ -682,7 +682,8 @@ class Render {
 			if ( isset( $attr['title'] ) && !$i ) {
 				$slide = "== $attr[title] ==\n" . trim( $slide );
 				$st = 'slide withtitle';
-			} else { 				$st = 'slide';
+			} else {
+				$st = 'slide';
 			}
 			$output = self::clone_options_parse( trim( $slide ), $parser, false );
 			$html .= '<div class="' . $st . '" ' . $style . ' id="slide'
