@@ -572,7 +572,7 @@ class Render {
 		$html = $parser->parse(
 			$content, $parser->getTitle(), $parser->extClonedOptions, !$inline, false
 		)->getText();
-		$parser->mOptions = $oldOpt;
+		$parser->setOptions( $oldOpt );
 		return $html;
 	}
 
