@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toliño"
+		]
+	},
+	"s5slide-desc": "S5SlideShow é unha extensión de MediaWiki que permite a creación sinxela, rápida e cómoda de presentacións de diapositivas usando S5 no contexto de páxinas MediaWiki e wiki.",
+	"special-s5SlideShow-title": "Configuración de S5SlideShow",
+	"s5slide-header-title": "Título",
+	"s5slide-header-subtitle": "Subtítulo",
+	"s5slide-header-footer": "Pé de páxina",
+	"s5slide-header-subfooter": "Subpé de páxina",
+	"s5slide-header-author": "Autor"
+}
