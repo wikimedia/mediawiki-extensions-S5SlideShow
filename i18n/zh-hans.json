@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"GuoPC"
+		]
+	},
+	"s5slide-desc": "S5SlideShow是一个MediaWiki扩展，允许在MediaWiki和Wiki页面上下文中使用S5简单、快速、方便地创建幻灯片。",
+	"special-s5SlideShow-title": "S5SlideShow配置",
+	"s5slide-header-title": "标题",
+	"s5slide-header-subtitle": "副标题",
+	"s5slide-header-footer": "页脚",
+	"s5slide-header-subfooter": "副页脚",
+	"s5slide-header-author": "作者"
+}
