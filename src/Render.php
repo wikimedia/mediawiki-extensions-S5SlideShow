@@ -27,10 +27,10 @@ namespace S5SlideShow;
 
 use Article as MWArticle;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use Parser;
 use ParserOptions;
 use PPFrame;
-use Title;
 use User;
 
 // more trouble than help
