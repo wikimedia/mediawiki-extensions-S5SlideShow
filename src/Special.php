@@ -40,7 +40,7 @@ class SpecialS5SlideShow extends SpecialPage {
 	 */
 	public function execute( $sub ) {
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'special-s5SlideShow-title' ) );
+		$out->setPageTitle( $this->msg( 'special-s5SlideShow-title' )->escaped() );
 		$out->addHelpLink( 'S5SlideShow' );
 		$out->addWikiMsg( 'special-s5SlideShow-intro' );
 	}
