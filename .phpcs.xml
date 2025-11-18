@@ -2,6 +2,9 @@
 <ruleset name="MediaWiki">
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
 		<exclude name="Generic.CodeAnalysis.AssignmentInCondition.Found" />
+		<exclude name="MediaWiki.Commenting.ClassAnnotations.UnrecognizedAnnotation" />
+		<exclude name="MediaWiki.Commenting.CommentBeforeClass.SpacingAfter" />
+		<exclude name="MediaWiki.Commenting.CommentBeforeClass.StrayStyle" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPrivate" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationProtected" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingParamTag" />

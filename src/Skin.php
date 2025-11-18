@@ -31,7 +31,6 @@ use SkinTemplate;
 
 /**
  * see https://doc.wikimedia.org/mediawiki-core/master/php/classSkinApi.html
- *
  */
 class Skin extends SkinApi {
 	/**
