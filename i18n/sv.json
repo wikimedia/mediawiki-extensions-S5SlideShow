@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sabelöga"
+			"Sabelöga",
+			"Stefan2255"
 		]
 	},
+	"s5slide-desc": "S5SlideShow är ett MediaWiki-tillägg som möjliggör enkel, snabb och bekväm skapande av bildspel med S5 i samband med MediaWiki- och Wiki-sidor.",
+	"special-s5SlideShow-title": "S5SlideShow-konfiguration",
 	"s5slide-header-title": "Titel",
 	"s5slide-header-subtitle": "Undertext",
 	"s5slide-header-footer": "Fot",
