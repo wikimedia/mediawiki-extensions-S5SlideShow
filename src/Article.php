@@ -28,9 +28,6 @@ use Article as MWArticle;
 use LogEventsList;
 use MediaWiki\MediaWikiServices;
 
-// more trouble than help
-// use Wikimedia\AtEase\AtEase;
-
 /**
  * @author Vitaliy Filippov <vitalif@mail.ru>
  * @author Wolfgang Fahl
@@ -56,7 +53,6 @@ class Article extends MWArticle {
 	// Get content from the file
 	public function getContent() {
 		if ( $this->getID() == 0 ) {
-			// AtEase::quietCall( 'file_get_contents',
 			$this->mContent = file_get_contents( $this->s5file );
 		} else {
 			$this->loadContent();

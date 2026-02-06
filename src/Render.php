@@ -33,9 +33,6 @@ use ParserOptions;
 use PPFrame;
 use User;
 
-// more trouble than help
-// use Wikimedia\AtEase\AtEase;
-
 /**
  * @author Vitaliy Filippov <vitalif@mail.ru>
  * @author Mark A. Hershberger <mah@nichework.com>
@@ -385,7 +382,6 @@ class Render {
 		wfDebug( __CLASS__ . $debugMsg );
 
 		// load template contents
-		// AtEase::quietCall( 'file_get_contents'
 		$slide_template = file_get_contents( $egS5SlideTemplateFile );
 		if ( !$slide_template ) {
 			return false;
@@ -524,7 +520,6 @@ class Render {
 				$c = $a->getContent();
 			} else {
 				// try getting page from file system
-				// AtEase::quietCall('file_get_contents'
 				$skinFile = "$dir/" . str_replace( '$skin', $skin, $file );
 				$c = file_get_contents( $skinFile );
 			}
