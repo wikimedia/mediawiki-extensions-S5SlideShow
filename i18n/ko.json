@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tensama0415"
+		]
+	},
+	"s5slide-desc": "S5SlideShow는 미디어위키 확장 기능으로, 미디어위키 및 위키 문서 환경에서 S5를 사용하여 간단하고 빠르고 편리하게 슬라이드 쇼를 만들 수 있도록 해줍니다.",
+	"special-s5SlideShow-title": "S5SlideShow 구성",
+	"s5slide-header-title": "제목",
+	"s5slide-header-subtitle": "부제",
+	"s5slide-header-footer": "바닥글",
+	"s5slide-header-subfooter": "하위 바닥글",
+	"s5slide-header-author": "저자"
+}
