@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wizzard"
+		]
+	},
+	"s5slide-desc": "S5SlideShow je rozšírenie MediaWiky umožňujúce jednoduché, rýchle a pohodlné vytváranie prezentácií pomocou S5 v prostredí MediaWiky a wiki stránok.",
+	"special-s5SlideShow-title": "Konfigurácia S5SlideShow",
+	"s5slide-header-title": "Názov",
+	"s5slide-header-subtitle": "Podnadpis",
+	"s5slide-header-footer": "Päta",
+	"s5slide-header-subfooter": "Podpäta",
+	"s5slide-header-author": "Autor"
+}
